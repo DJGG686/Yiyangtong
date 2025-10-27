@@ -6,13 +6,15 @@
 # @version : V1
 
 from flask import Blueprint, Response
+from .base_controller import Controller
 from service.schedule_service import ScheduleService
 
 
-class ScheduleController:
+class ScheduleController(Controller):
     PREFIX = 'schedule'
 
     def __init__(self):
+        super().__init__()
         self.schedule_service = ScheduleService()
         self.blueprint = Blueprint('schedule_api', __name__)
         self.bind_view_func()
