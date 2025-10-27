@@ -2,7 +2,7 @@
 数据库工具函数
 提供常用的数据库操作辅助函数
 """
-from models import db, User, Institution, Order, Favorite, ReservingPerson, BedInfo, ServiceSchedule
+from models.models import db, User, Institution, Order, Favorite, ReservingPerson, BedInfo, ServiceSchedule
 from datetime import datetime
 
 
