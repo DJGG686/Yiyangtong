@@ -6,13 +6,15 @@
 # @version : V1
 
 from flask import Blueprint, Response
+from .base_controller import Controller
 from service.user_service import UserService
 
 
-class UserController:
+class UserController(Controller):
     PREFIX = 'user'
 
     def __init__(self):
+        super().__init__()
         self.user_service = UserService()
         self.blueprint = Blueprint('user_api', __name__)
         self.bind_view_func()

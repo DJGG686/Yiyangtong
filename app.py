@@ -5,16 +5,58 @@
 # @function:
 # @version : V1
 # @description : 初始化Flask应用，完成基本配置
-from flask import Flask
+import os
+from flask import Flask, request, jsonify, abort, Response, render_template
+from config.develop_setting import DevelopConfig
+import logging
+from utils.log_tool import LogTool
 
-app = Flask(__name__)
 
-app.config.from_pyfile('config/base_setting.py')
+def create_app():
+    _app = Flask(__name__)
+
+    _app.config.from_object(DevelopConfig)
+
+    if not os.path.exists(_app.config['LOGGING_PATH']):
+        os.mkdir(_app.config['LOGGING_PATH'])
+
+    log_tool = LogTool(_app.config['LOGGING_CONFIG_PATH'])
+
+    logger = logging.getLogger("debug_handler")
+    print("rootlogger:", logger.handlers)
+    return _app
+
+
+app = create_app()
 
 
 @app.route('/')
 def main_page():  # put application's code here
-    return '颐养通后端接口'
+    return jsonify({
+        'message': '颐养通后端接口',
+        'status': 'running'
+    })
+
+
+@app.route('/abort')
+def abort_function():
+    abort(406)
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return jsonify({
+        'code': 404,
+        'message': '接口不存在'
+    }), 404
+
+
+@app.errorhandler(500)
+def internal_error(error):
+    return jsonify({
+        'code': 500,
+        'message': '服务器内部错误'
+    }), 500
 
 
 if __name__ == '__main__':

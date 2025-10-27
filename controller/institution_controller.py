@@ -5,13 +5,15 @@
 # @function: 
 # @version : V1
 from flask import Blueprint, Response
+from .base_controller import Controller
 from service.institution_service import InstitutionService
 
 
-class InstitutionController:
+class InstitutionController(Controller):
     PREFIX = 'institution'
 
     def __init__(self):
+        super().__init__()
         self.institution_service = InstitutionService()
         self.blueprint = Blueprint('institution_api', __name__)
         self.bind_view_func()
