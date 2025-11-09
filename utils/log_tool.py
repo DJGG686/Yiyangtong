@@ -10,10 +10,6 @@ from logging import config
 import yaml
 
 
-def get_logger(name):
-    return logging.getLogger(name)
-
-
 class LogTool:
     def __init__(self, yaml_path=f".\yaml_files\logging.yaml", default_level=logging.INFO):
         path = yaml_path
@@ -23,3 +19,7 @@ class LogTool:
             logging.config.dictConfig(config_dict)
         else:
             logging.basicConfig(level=default_level)
+
+    @staticmethod
+    def get_logger(name):
+        return logging.getLogger(name)
