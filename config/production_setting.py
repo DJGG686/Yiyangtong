@@ -4,3 +4,10 @@
 # @filename: production_setting
 # @function: 
 # @version : V1
+
+from . import Config
+
+
+# 生产环境配置
+class ProductionConfig(Config):
+    pass
