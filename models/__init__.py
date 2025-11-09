@@ -4,3 +4,5 @@
 # @filename: __init__.py
 # @function: 
 # @version : V1
+
+from models.models import db, User, Institution, Order, Favorite, ReservingPerson, BedInfo, ServiceSchedule
