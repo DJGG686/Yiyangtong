@@ -4,3 +4,7 @@
 # @filename: __init__.py
 # @function: 
 # @version : V1
+
+from config.base_setting import Config as Config
+from config.develop_setting import DevelopConfig as DevelopConfig
+

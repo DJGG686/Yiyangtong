@@ -15,7 +15,6 @@ class InstitutionController(Controller):
     def __init__(self):
         super().__init__()
         self.institution_service = InstitutionService()
-        self.blueprint = Blueprint('institution_api', __name__)
         self.bind_view_func()
 
     def bind_view_func(self):

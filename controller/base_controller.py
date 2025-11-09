@@ -11,7 +11,7 @@ class Controller:
     PREFIX = None
 
     def __init__(self):
-        self.blueprint = Blueprint(self.PREFIX, __name__)
+        self.blueprint = Blueprint(self.PREFIX, __name__, url_prefix=f'/{self.PREFIX}')
 
     def register(self, app):
-        app.register_blueprint(self.blueprint, url_prefix=f'/{self.PREFIX}')
+        app.register_blueprint(self.blueprint)
