@@ -7,9 +7,8 @@
 # @description : 初始化Flask应用，完成基本配置
 import os
 from flask import Flask, request, jsonify, abort, Response, render_template
-from config.develop_setting import DevelopConfig
-import logging
-from utils.log_tool import LogTool
+from config import DevelopConfig
+from utils import LogTool
 
 
 def create_app():
@@ -22,8 +21,7 @@ def create_app():
 
     log_tool = LogTool(_app.config['LOGGING_CONFIG_PATH'])
 
-    logger = logging.getLogger("debug_handler")
-    print("rootlogger:", logger.handlers)
+    logger = log_tool.get_logger("debug_handler")
     return _app
 
 

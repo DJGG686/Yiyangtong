@@ -6,6 +6,9 @@
 # @version : V1
 
 from flask import Blueprint, Response
+
+from decorator import api_response
+from utils.response import ApiResponse
 from .base_controller import Controller
 from service.user_service import UserService
 
@@ -16,7 +19,6 @@ class UserController(Controller):
     def __init__(self):
         super().__init__()
         self.user_service = UserService()
-        self.blueprint = Blueprint('user_api', __name__)
         self.bind_view_func()
 
     def bind_view_func(self):
@@ -27,11 +29,13 @@ class UserController(Controller):
         self.blueprint.add_url_rule('/order', view_func=self.get_user_order, methods=['GET'])
         self.blueprint.add_url_rule('/favorite', view_func=self.get_user_favorate, methods=['GET'])
 
+    @api_response
     def login(self):
         return Response('login', 200)
 
+    @api_response
     def get_reserver_info(self):
-        return Response('user info', 200)
+        return ApiResponse().info
 
     def add_reserver_info(self):
         return Response('add user info', 200)

@@ -16,7 +16,6 @@ class ScheduleController(Controller):
     def __init__(self):
         super().__init__()
         self.schedule_service = ScheduleService()
-        self.blueprint = Blueprint('schedule_api', __name__)
         self.bind_view_func()
 
     def bind_view_func(self):
